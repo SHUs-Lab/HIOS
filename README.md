@@ -1,6 +1,6 @@
 # HIOS
 
-# Instruction to Run:
+## Instruction to Run:
 1. Go to executor folder
 2. set path in buildfile.sh
 3. run sh buildfile.sh

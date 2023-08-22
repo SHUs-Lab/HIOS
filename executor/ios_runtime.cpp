@@ -1231,7 +1231,7 @@ struct Input: NodeBase {
 		}
 
 		if(this->op_rank == -1 and num_terms == 1) {
-
+			checkCUDA(cudaDeviceSynchronize());
 			MPI_Bcast(this->output_data, this->batch_size* out_channels * output_h * output_w, MPI_FLOAT, 0, MPI_COMM_WORLD);        	
 			checkCUDA(cudaDeviceSynchronize());
 

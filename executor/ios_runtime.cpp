@@ -1233,7 +1233,7 @@ struct Input: NodeBase {
 		if(this->op_rank == -1 and num_terms == 1) {
 			checkCUDA(cudaDeviceSynchronize());
 			MPI_Bcast(this->output_data, this->batch_size* out_channels * output_h * output_w, MPI_FLOAT, 0, MPI_COMM_WORLD);        	
-			checkCUDA(cudaDeviceSynchronize());
+			//checkCUDA(cudaDeviceSynchronize());
 
 			return;
 		}
@@ -1267,12 +1267,12 @@ struct Input: NodeBase {
 
 			checkCUDA(cudaDeviceSynchronize());
 			populate_gather(-2);
-			checkCUDA(cudaDeviceSynchronize());
+			//checkCUDA(cudaDeviceSynchronize());
 		}else if((num_terms > 1) and (this->op_rank == -3)) {
 
 			checkCUDA(cudaDeviceSynchronize());
 			populate_gather(-3);
-			checkCUDA(cudaDeviceSynchronize());
+			//checkCUDA(cudaDeviceSynchronize());
 
 		}
 

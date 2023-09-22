@@ -928,12 +928,7 @@ struct Term: NodeBase {
 
 
 
-		cudaEvent_t start;
-		checkCUDA(cudaEventCreateWithFlags(&start, cudaEventDisableTiming));
-		cudaEventRecord(start, context->stream);
-		cudaStreamWaitEvent ( context->stream, start );
-		cudaEventSynchronize ( start );
-		checkCUDA(cudaEventDestroy(start));
+		cudaStreamSynchronize(context->stream);
 
 
 		if(myrank == 0){
@@ -1449,12 +1444,7 @@ struct Conv: NodeBase {
 		if (isendcounter >= 1 and rInfo_len >= 1)
 		{
 
-			cudaEvent_t start;
-			checkCUDA(cudaEventCreateWithFlags(&start, cudaEventDisableTiming));
-			cudaEventRecord(start, context->stream);
-			cudaStreamWaitEvent ( context->stream, start );
-			cudaEventSynchronize ( start );
-			checkCUDA(cudaEventDestroy(start));
+			cudaStreamSynchronize(context->stream);
 		}
 
 
@@ -1606,12 +1596,7 @@ struct Sequential: NodeBase {
 		if (isendcounter >= 1 and rInfo_len >= 1)
 		{
 
-			cudaEvent_t start;
-			checkCUDA(cudaEventCreateWithFlags(&start, cudaEventDisableTiming));
-			cudaEventRecord(start, context->stream);
-			cudaStreamWaitEvent ( context->stream, start );
-			cudaEventSynchronize ( start );
-			checkCUDA(cudaEventDestroy(start));
+			cudaStreamSynchronize(context->stream);
 		}
 		for(int i = 0; i < rInfo_len; i++) {
 
@@ -1821,12 +1806,7 @@ struct Identity: NodeBase {
 		if (isendcounter >= 1 and rInfo_len >= 1)
 		{
 
-			cudaEvent_t start;
-			checkCUDA(cudaEventCreateWithFlags(&start, cudaEventDisableTiming));
-			cudaEventRecord(start, context->stream);
-			cudaStreamWaitEvent ( context->stream, start );
-			cudaEventSynchronize ( start );
-			checkCUDA(cudaEventDestroy(start));
+			cudaStreamSynchronize(context->stream);
 		}
 
 		for(int i = 0; i < rInfo_len; i++) {
@@ -1952,12 +1932,7 @@ struct Pool: NodeBase {
 		if (isendcounter >= 1 and rInfo_len >= 1)
 		{
 
-			cudaEvent_t start;
-			checkCUDA(cudaEventCreateWithFlags(&start, cudaEventDisableTiming));
-			cudaEventRecord(start, context->stream);
-			cudaStreamWaitEvent ( context->stream, start );
-			cudaEventSynchronize ( start );
-			checkCUDA(cudaEventDestroy(start));
+			cudaStreamSynchronize(context->stream);
 		}
 
 		for(int i = 0; i < rInfo_len; i++) {

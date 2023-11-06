@@ -2447,7 +2447,8 @@ struct Graph {
 			for (int t = 0; t < number; t++) {
 				checkCUDA(cudaDeviceSynchronize());
 				checkCUDA(cudaEventRecord(start, 0));
-				forward(profile_stage_latency, events);
+				//forward(profile_stage_latency, events);
+				forward(0, events);
 
 				checkCUDA(cudaEventRecord(end, 0));
 				checkCUDA(cudaDeviceSynchronize());

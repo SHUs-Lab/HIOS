@@ -2447,20 +2447,20 @@ struct Graph {
 			for (int t = 0; t < number; t++) {
 				checkCUDA(cudaDeviceSynchronize());
 				checkCUDA(cudaEventRecord(start, 0));
-				//forward(profile_stage_latency, events);
-				forward(0, events);
+				forward(profile_stage_latency, events);
+				
 
 				checkCUDA(cudaEventRecord(end, 0));
 				checkCUDA(cudaDeviceSynchronize());
 				float latency;
-				/*
+				
 				if(profile_stage_latency) {
 					for (int j = 0; j < num_stages; j++) {
 						checkCUDA(cudaEventElapsedTime(&latency, j == 0 ? start : events[j - 1], j == num_stages - 1 ? end : events[j]));
 						stage_results[i * num_stages + j] += latency;
 					}
 				}
-    				*/
+    				
 				checkCUDA(cudaEventElapsedTime(&latency, start, end));
 				results[i] += latency;
 			}
@@ -2541,7 +2541,7 @@ extern void graph_latency(const char *graph_json, int batch_size, int warmup, in
 
 	graph.init_graph(batch_size, graph_config, myrank);
 
-
+	profile_stage_latency = 0;
 	graph.measure_latency(warmup, number, repeat, results, profile_stage_latency, stage_results);
 
 

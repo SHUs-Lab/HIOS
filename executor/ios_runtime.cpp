@@ -2400,8 +2400,7 @@ struct Graph {
 			for (int t = 0; t < number; t++) {
 
 				forward(false, 0);
-				if(stage_num_seq[0] != 1)
-                    		checkCUDA(cudaDeviceSynchronize());
+				
 				
 			}
 			checkCUDA(cudaEventRecord(end, 0));

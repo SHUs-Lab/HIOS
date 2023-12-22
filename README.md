@@ -127,7 +127,7 @@ The following figure shows inference latency for Inceptiont v3 and NASNet networ
 The following figure shows performance gain for small and Large image input
 <br><br>
 
-![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/f6713006-294e-4447-bc25-811a99719d3e)  ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/bfd5e4cc-37c0-4565-895c-483eeded672b) 
+| ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/f6713006-294e-4447-bc25-811a99719d3e) |   ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/bfd5e4cc-37c0-4565-895c-483eeded672b) |
 
 
 <br><br>

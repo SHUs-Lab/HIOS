@@ -5,7 +5,22 @@ To lower the inference latency of the directed acyclic graph (DAG) structured DN
 
 In our work HIOS, we study the scope of inter-operator parallelism beyond a single GPU. The main bottleneck of inter-operator parallelism on multiple GPUs is communication latency. However, with the new technological advancements of high-speed interconnect (NVLink), the communication latency is not as high as before. This opens up new opportunities for inter-operator parallelism on multiple GPUs connected by high-speed interconnect (NVLink) and we design the Hierarchical Inter-Operator Scheduler (HIOS) to automatically schedule the execution of multiple operators in parallel in such platform.
 
-## Instruction to Run:
+## Scheduling Challenges:
+
+
+## Methodology:
+
+## System Environment
+
+Please follow this section to run the HIOS on Multiple GPUs connected via NVLink
+
+### Prerequisites
+
+- [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) 10.0 or higher
+- [cuDNN](https://developer.nvidia.com/cudnn) 7.6.5 or higher
+
+
+### Instruction to Run:
 1. Go to executor folder
 2. set path in buildfile.sh
 3. run sh buildfile.sh

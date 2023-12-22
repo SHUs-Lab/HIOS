@@ -65,7 +65,7 @@ There are two major components of HIOS system
 1.    Download souce code from github
 2.    Go to executor folder and set cuda and CUPTI library path in buildfile.sh
 3.    Run sh buildfile.sh in terminal. It will generate the executanle file of execution engine( a Cuda-aware MPI application)
-4.    
-5. run sh buildfile.sh
-6. Go to parent folder
-7. run sh run_expr_batchsize.sh
+4.    For measuring latency for Inception_v3, NASNet and Randwire run sh run_expr_batchsize.sh on parent folder
+5.    Input image size and batch size are configurable in run_expr_batchsize.sh file
+6.    The schedule and optimization cost will be generated in output folder
+

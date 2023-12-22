@@ -33,19 +33,22 @@ HIOS works on two steps
 2.  **Intra-GPU** inter-operator parallelization​
       *  Strats when operators are already mapped onto a GPU in the previous step
       *  In this step, operators are mapped to Streams within a GPU
-      *  On a sliding window, finds operators to parallelize into Streams within a GPU
+      *  On a sliding window, find operators to parallelize into Streams within a GPU
         
 ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/02316260-ea89-4969-b41f-3a3724b8ea96)
 
-## System Environment
+## Implementation
 
-Please follow this section to run the HIOS on Multiple GPUs connected via NVLink
+Please follow this section to run the HIOS on Multiple GPUs connected via NVLink. We conduct our experiment on two GPUs connected via NVLink in a server. This code base are not tested for more than two GPUs.
 
-### Prerequisites
+### Environment Prerequisites
 
 - [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) 10.0 or higher
 - [cuDNN](https://developer.nvidia.com/cudnn) 7.6.5 or higher
+- [CUPTI](https://developer.nvidia.com/cupti)
+- [Cuda-aware MPI](https://www.open-mpi.org/faq/?category=runcuda)
 
+### HIOS system Components
 
 ### Instruction to Run:
 1. Go to executor folder

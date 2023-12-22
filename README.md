@@ -116,4 +116,21 @@ def main():
 
     dump_results(graph.name, height, width, optimization_cost, opt_type, batch_size=1, warmup=2, number=2, repeat=6, ngpu=ngpu, device = device)
 ```
+## Results
+The following figure shows inference latency for Inceptiont v3 and NASNet network for different image sizes
+<br> <br>
 
+![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/6e781faf-98ae-4b1e-80b0-abc32c671493)
+
+
+<br><br>
+The following figure shows performance gain for small and Large image input
+<br><br>
+
+![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/f6713006-294e-4447-bc25-811a99719d3e)  ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/bfd5e4cc-37c0-4565-895c-483eeded672b) 
+
+
+<br><br>
+The following figure shows the optimization cost for Inception v3 and NASNet network
+<br><br>
+![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/ccbc4c7f-92f4-442c-9f8d-d87d24792642)

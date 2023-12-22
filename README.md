@@ -62,11 +62,58 @@ There are two major components of HIOS system
       *   Before measuring latency, it does warm-up execution of the schedules multiple times
    
 ### Instruction to Run:
-1.   Python based scheduler
-2.   Dwnload souce code from github
-3.   Go to executor folder and set cuda and CUPTI library path in buildfile.sh
-4.   Run sh buildfile.sh in terminal. It will generate the executanle file of execution engine( a Cuda-aware MPI application)
-5.   For measuring latency for Inception_v3, NASNet and Randwire run sh run_expr_batchsize.sh on parent folder
-6.   Input image size and batch size are configurable in run_expr_batchsize.sh file
-7.   The schedule and optimization cost will be generated in output folder
+Please follow the following instruction to profile  Inception_v3, NASNet and Randwire computation graph 
+
+1.   Download souce code from github
+2.   Go to executor folder and set cuda and CUPTI library path in buildfile.sh
+3.   Run sh buildfile.sh in terminal. It will generate the executanle file of execution engine( a Cuda-aware MPI application)
+4.   For measuring latency for Inception_v3, NASNet and Randwire run sh run_expr_batchsize.sh on parent folder
+5.   Input image size and batch size are configurable in run_expr_batchsize.sh file
+6.   The schedule and optimization cost will be generated in output folder
+
+For custom computation Graph
+
+1.   Define your computation graph in main.py file in parent folder like following example
+2.   Build the execution engine
+3.   Run python main.py in parent folder
+
+```
+def sample_network():
+    v = placeholder(output_shape=(1, 500, 500))
+    block = Block(enter_node=v.node)
+    v1 = conv2d(block, inputs=[[v]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v2 = conv2d(block, inputs=[[v]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v3 = conv2d(block, inputs=[[v]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v1 = conv2d(block, inputs=[[v1]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    out = identity(block, inputs=[[v1, v2],[v3]], is_exit=True)  # reduce v1, v2, and concat v3
+    block1 = Block(enter_node=out.node)
+    v11 = conv2d(block1, inputs=[[out]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v21 = conv2d(block1, inputs=[[out]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v31 = conv2d(block1, inputs=[[out]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    v11 = conv2d(block1, inputs=[[v11]], out_channels=1, kernel=(3, 3), stride=(1, 1), padding=(1, 1), act='relu')
+    out1 = identity(block1, inputs=[[v11, v21, v31]], is_exit=True)  # reduce v1, v2, and v3
+    graph = Graph(name="demo", input=v.node, blocks=[block, block1])
+  
+    return graph
+
+
+def main():
+
+    graph = sample_network()
+    opt_type = "hios_lp"
+    batch_size = 1
+    height = 500
+    width = 500
+    ngpu = 2
+    device = "v100"
+    t1 = time.time()
+    sys.setrecursionlimit(7000)
+    optimize(height, width, graph, opt_type, batch_size=batch_size, warmup=2, number=6, repeat=6, ngpu =ngpu, device = device)
+    t2 = time.time()
+    optimization_cost = t2 - t1
+    print("Optimization cost::")
+    print(optimization_cost)
+
+    dump_results(graph.name, height, width, optimization_cost, opt_type, batch_size=1, warmup=2, number=2, repeat=6, ngpu=ngpu, device = device)
+```
 

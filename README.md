@@ -33,7 +33,7 @@ HIOS works on two steps
 2.  **Intra-GPU** inter-operator parallelization​
       *  Strats when operators are already mapped onto a GPU in the previous step
       *  In this step, operators are mapped to Streams within a GPU
-      *  On a sliding window, find operators to parallelize into Streams within a GPU
+      *  On a sliding window,it finds operators to parallelize into Streams within a GPU
         
 ![image](https://github.com/SHUs-Lab/HIOS/assets/18241223/02316260-ea89-4969-b41f-3a3724b8ea96)
 

@@ -62,10 +62,11 @@ There are two major components of HIOS system
       *   Before measuring latency, it does warm-up execution of the schedules multiple times
    
 ### Instruction to Run:
-1.    Download souce code from github
-2.    Go to executor folder and set cuda and CUPTI library path in buildfile.sh
-3.    Run sh buildfile.sh in terminal. It will generate the executanle file of execution engine( a Cuda-aware MPI application)
-4.    For measuring latency for Inception_v3, NASNet and Randwire run sh run_expr_batchsize.sh on parent folder
-5.    Input image size and batch size are configurable in run_expr_batchsize.sh file
-6.    The schedule and optimization cost will be generated in output folder
+1.   Python based scheduler
+2.   Dwnload souce code from github
+3.   Go to executor folder and set cuda and CUPTI library path in buildfile.sh
+4.   Run sh buildfile.sh in terminal. It will generate the executanle file of execution engine( a Cuda-aware MPI application)
+5.   For measuring latency for Inception_v3, NASNet and Randwire run sh run_expr_batchsize.sh on parent folder
+6.   Input image size and batch size are configurable in run_expr_batchsize.sh file
+7.   The schedule and optimization cost will be generated in output folder
 

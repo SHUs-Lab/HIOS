@@ -76,6 +76,7 @@ For custom computation Graph
 1.   Define your computation graph in main.py file in parent folder like following example
 2.   Build the execution engine
 3.   Run python main.py in parent folder
+4.   The schedule and optimization cost will be generated in output folder
 
 ```
 def sample_network():
